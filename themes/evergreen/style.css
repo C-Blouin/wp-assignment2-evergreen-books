@@ -1,0 +1,1099 @@
+/* 
+Theme Name: Evergreen Books
+Author: Christopher Blouin
+Description: The Evergreen theme serves as a template for selling books online, either physically or digitally. The theme is designed to be clean and minimalistic.
+Requires at least: 5.9
+Tested up to: 6.4.3
+Requires PHP: 5.6
+Version: 1.0
+*/
+
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+  box-sizing: border-box;
+  width: 100%;
+  scroll-behavior: smooth;
+  padding: 0;
+}
+
+/* Declaring root styles. */
+:root {
+    --light-beige: #f7f3f1;
+    --white: #f5fdf4;
+    --light-green: #9ac67f;
+    --dark-brown: #46433e;
+    --light-green-hover: #baf8c9;
+    --product-price: #46433e;
+    --darker-beige: #f5ebe7;
+    --display-font: "giulia", sans-serif;
+    --heading-font: "Raleway", sans-serif;
+    --body-font: "Montserrat", sans-serif;
+    --primary-heading: 64px;
+    --primary-heading-mobile: 41px;
+    --desktop-body-size: 18px;
+    --mobile-body-size: 16px;
+    --font-xxs: 0.9rem;
+    --font-xs: 1.2rem;
+    --font-sm: 1.4rem;
+    --font-md: 1.6rem;
+    --font-lg: 1.8rem;
+    --font-xlg: 2rem;
+    --font-xxlg: 2.2rem;
+    --transition: all 0.3s ease-in-out;
+}
+
+/* Setting the box-sizing of my document to border-box. */
+html,
+*, 
+::after, 
+::before {
+    box-sizing: border-box;
+}
+
+/* All elements will inherit the box-sizing set in the root html styles. */
+*::before, *::after, * {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global html styles. */
+html {
+    line-height: 1.6;
+    font-size: 100%;
+    font-family: var(--body-font);
+    font-weight: 300;
+    font-style: normal;
+    color: var(--dark-brown);
+    margin: 0!important;
+}
+
+/* Scrollbar styles. */
+body::-webkit-scrollbar {
+width: 7px; 
+}
+
+/* Scrollbar track styles. */
+body::-webkit-scrollbar-track {
+background: var(--white); 
+}
+
+/* Scrollbar thumb styles. */
+body::-webkit-scrollbar-thumb {
+background-color: var(--light-green); 
+border-radius: 25px;
+height: 2rem;
+}
+
+/* Global heading styles. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 900;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+    line-height: 1.2;
+    font-family: var(--heading-font);
+}
+
+/* Global paragraph styles. */
+p {
+  /* Dynamically scale font-size based on the viewport width using the clamp function. */
+    font-size: clamp(var(--mobile-body-size), 3vw, var(--desktop-body-size));
+    line-height: 1.8;
+    font-family: var(--body-font);
+    margin: 0;
+}
+
+/* Global anchor styles. */
+a {
+    text-decoration: none;
+}
+
+ul, li, figure {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+/* Header styles. */
+header {
+    width: 100%;
+    filter: none;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    transition: var(--transition);
+}
+
+/* Allow the logo and link containers in the header to sit side by each. */
+#menu-header-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+/* nav-link styles */
+header .menu-item a {
+    font-size: 1.3rem;
+    color: var(--dark-brown);
+    transition: var(--transition);
+    font-family: "futura-pt", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Header nav link hover and focus state styles. */
+header .menu-item a:hover {
+    color: var(--light-green);
+}
+
+header .menu-item:active, header .menu-item:focus {
+    color: var(--primary-color);
+}
+
+/* Background and white space styles of the navbar bootstrap component */
+.navbar {
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    max-width: 1366px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px){
+
+    .navbar {
+        padding: 1rem;
+    }
+
+    .offcanvas {
+        max-width: min(75vw, 600px)!important;
+    }
+
+    /* Remove the default canvas border when toggled out from the side. */
+    div .offcanvas.offcanvas-end {
+        border-left: none;
+    }
+}
+
+/* Thank you to Lucide Icons for the Hamburger Icon */
+[data-bs-theme=light] .navbar-toggler-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM5YWM2N2YiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1hbGlnbi1qdXN0aWZ5Ij48bGluZSB4MT0iMyIgeDI9IjIxIiB5MT0iNiIgeTI9IjYiLz48bGluZSB4MT0iMyIgeDI9IjIxIiB5MT0iMTIiIHkyPSIxMiIvPjxsaW5lIHgxPSIzIiB4Mj0iMjEiIHkxPSIxOCIgeTI9IjE4Ii8+PC9zdmc+);
+}
+
+/* Override bootsrap navbar-toggler button styles. */
+div .navbar-toggler {
+    outline: none;
+    /* Apply custom size to the hamburger menu */
+    font-size: 1.4rem;
+    border: none;
+    box-shadow: none;
+    padding: 0.55rem;
+    background-color: var(--dark-brown);
+}
+
+/* Remove the default box shadow when the toggler button is in the focused state. */
+div .navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Center the navbar element contents. */
+.navbar > .container-fluid {
+    justify-content: center;
+}
+
+#navbarNav > div {
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: 0.5rem 3rem;
+}
+
+.navbar-expand-xl .navbar-nav {
+    margin-top: 1rem;
+}
+
+nav .navbar-brand {
+    margin-right: 0;
+}
+
+/* Navigation Bar Media Query for screen widths of 1200px */
+@media screen and (max-width: 1200px) {
+
+    #menu-header-nav {
+        margin-top: 2rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-nav {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .navbar > .container-fluid {
+        justify-content: space-between;
+    }
+
+    .navbar {
+        background-image: none;
+    }
+
+    .nav-item {
+        margin: 1rem 0;
+    }
+
+    .offcanvas-body {
+        background-color: var(--light-beige);          
+    }
+
+    #navbarNav > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        padding: 0.5rem 1rem;
+    }
+
+}
+
+/* Start of Hero Styles */
+
+.hero-wrapper {
+    position: relative;
+    min-height: 100vh;
+    background-color: #f7f3f1;   
+}
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    max-width: 1366px;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10rem 3rem 0 3rem;
+    gap: 5rem;
+}
+
+#hero > div {
+    flex: 2;
+}
+
+#hero > figure {
+    flex: 1.5;
+}
+
+#hero h1 {
+    font-size: clamp(var(--primary-heading-mobile), 9vw, var(--primary-heading));
+    font-family: var(--display-font);
+    color: var(--dark-brown);
+    font-weight: 400;
+    line-height: 1;
+}
+
+#hero p {
+    /* font-size: clamp(var(--mobile-body-size), 3vw, var(--desktop-body-size)); */
+    margin: 2rem 0 2.5rem 0;
+    max-width: 740px;
+}
+
+/* Hero and Offer sections CTA button styles */
+#hero a, #offerings a {
+    background-color: var(--light-green);
+    color: var(--light-beige);
+    font-family: var(--body-font);
+    font-size: clamp(var(--font-sm), 3vw, var(--font-md));
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 2.25rem;
+    border-radius: 5rem;
+    transition: var(--transition);
+}
+
+#hero a:hover, #offerings a:hover {
+    background-color: var(--dark-brown);
+    color: var(--light-beige);
+}
+
+/* Hero Image styles. */
+#hero figure img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Hero Section Media Query */
+@media screen and (max-width: 1200px) {
+    
+    #hero {
+        padding: 10rem 2rem 5rem 2rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    #hero > div {
+        flex: 0;
+    }
+
+    #hero figure img {
+        width: 500px;
+        height: auto;
+        margin-top: 2rem;
+    }
+
+    @media screen and (max-width: 600px) {
+        #hero figure img {
+            width: 100%;
+            height: auto;
+        }
+    
+    }
+    
+}
+
+/* Offerings Sections Styles */
+
+.offerings-wrapper {
+    background-color: #eee6e2;
+    padding: 5rem 0;
+}
+
+#offerings {
+    max-width: 1366px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 5rem 2rem;
+}
+
+/* Offerings heading styles, dynamically adjust the font size with clamp. */
+#offerings > h2 {
+    font-size: clamp(var(--primary-heading-mobile), 9vw, var(--primary-heading));
+    font-family: var(--display-font);
+    font-weight: 400;
+    color: var(--dark-brown);
+}
+
+#offerings a {
+  margin-top: 3rem;
+}
+
+.offerings-container h3 {
+    font-weight: 600;
+    color: var(--dark-brown);
+}
+
+/* Offering container styles to hold the 3 column layout. */
+.offerings-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.offerings-container > article img {
+    margin: 1rem 0;
+}
+
+/* Offerings Media Query */
+@media screen and (max-width: 1200px) {
+    
+    #offerings {
+        padding: 5rem 2rem;
+    }
+
+    .offerings-container {
+        grid-template-columns: 1fr;
+    }
+
+    .offerings-container > article p {
+        max-width: 740px;
+    }
+
+    @media screen and (max-width: 768px) {
+        #offerings {
+            padding: 5rem 1rem;
+        }
+    }
+}
+
+/* Start of Footer Styles */
+
+footer {
+    background-color: var(--darker-beige);
+    padding: 2rem 0;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    text-align: center;
+    color: var(--dark-brown);
+    font-family: var(--heading-font);
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+}
+
+/* Footer navigations styles, display flex to divide the content spaced evenly. */
+footer nav {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+#menu-footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Footer navigation link styles. */
+#menu-footer-nav a {
+    font-size: 1.3rem;
+    color: var(--dark-brown);
+    transition: var(--transition);
+    font-family: "futura-pt", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+#menu-footer-nav a:hover {
+    color: var(--light-green);
+}
+
+/* Footer Navigation Media Query */
+@media screen and (max-width: 900px) {
+
+    footer nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    @media screen and (max-width: 600px) {
+        #menu-footer-nav {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+
+}
+
+/* End of Footer Styles */
+
+/* Index Default Page Styles, these are for pages that aren't utilizing my templates, but I want all my pages to be consistent, so these styles help keep default pages looking consistent. */
+
+.index-wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--light-beige);
+}
+
+#index {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1366px;
+  padding: 20rem 2rem 0 2rem;
+  background-color: var(--light-beige);
+}
+
+#index h1 {
+  font-size: clamp(var(--primary-heading-mobile), 9vw, var(--primary-heading));
+  font-family: var(--display-font);
+  color: var(--dark-brown);
+  font-weight: 800;    
+}
+
+/* Shop/Products Section Styles */
+
+.products-wrapper {
+  min-height: 100vh;
+  background-color: var(--light-beige);
+}
+
+#products {
+  max-width: 1366px;
+  margin: 0 auto;  
+  padding: 20rem 2rem 5rem 2rem;  
+}
+
+.products-intro {
+  margin-bottom: 3rem;
+}
+
+/* Products heading styles, dynamically adjusting the font based on the viewport width using the clamp function. */
+.products-intro h1 {
+  color: var(--dark-brown);
+  font-size: clamp(var(--primary-heading-mobile), 9vw, var(--primary-heading));
+  font-family: var(--display-font);    
+  font-weight: 800;
+}
+
+.products-intro p {
+    color: var(--dark-brown);
+    max-width: 720px;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.woocommerce-result-count {
+  color: var(--light-green);
+}
+
+/* Woocommerce Breadcrum Styles. */
+
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) .woocommerce-breadcrumb {
+  color: var(--dark-brown);
+}
+
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) .woocommerce-breadcrumb a {
+  color: var(--light-green);
+  transition: var(--transition);
+}
+
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) .woocommerce-breadcrumb a:hover {
+  color: var(--light-green);
+}
+
+/* Product title styles. */
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--light-green);
+}
+
+/* Product price styles. */
+.woocommerce-Price-amount {
+  color: var(--product-price);
+  font-size: 18px;
+}
+
+/* Hiding the product buttons on my shop page, I wanted a more mimimal design, so the buttons are displayed as none. */
+.woocommerce ul.products li.product .button{
+  display: none;
+}
+
+/* Adjust padding of my products page at screen widths of 1200px wide. */
+@media screen and (max-width: 1200px) {
+
+  #products {
+      padding: 15rem 2rem 5rem 2rem;  
+  }
+
+}
+
+/* WooCommerce Display Messages */
+
+.woocommerce-message,
+.woocommerce-error {
+  border-top-color: var(--dark-brown);
+}
+
+.woocommerce-message::before {
+  content: "\e015";
+  color: var(--light-green);
+}
+
+/* Cart Styles */
+
+
+/* Cart Heading styles. */
+.wc-block-components-title.wc-block-components-title {
+  color: var(--light-green);
+}
+
+.cart_totals > h2,
+.wp-block-heading {
+  color: var(--light-green);
+}
+
+/* Cart anchor styles. */
+.wc-block-cart-item__wrap > a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--light-green);
+  transition: var(--transition);
+}
+
+.wc-block-cart-item__wrap > a:hover {
+  color: var(--dark-brown);
+}
+
+.wc-block-components-button:not(.is-link) .wc-block-components-button__text {
+  background-color: var(--dark-brown);
+  color: var(--light-beige);
+  font-weight: 500;
+  border-radius: 2rem;
+  padding: 1rem 2.25rem;
+  transition: var(--transition);
+}
+
+.wc-block-components-button:not(.is-link) .wc-block-components-button__text:hover {
+  background-color: var(--light-green);
+  color: var(--light-beige);
+}
+
+/* White space below the cart container. */
+.wp-block-woocommerce-cart {
+  padding-bottom: 15rem;
+}
+
+/* Cart "Cross-sells" products grid, when there isn't anything in a users cart, these styles will display the suggested products in a flexible container. */
+.wc-block-grid__products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Only on the product page with the #index container, justify the products container to the left. */
+#index .wc-block-grid__products {
+  justify-content: left;
+  margin-top: 3rem;
+}
+
+/* Products & Index Media Query. */
+@media screen and (max-width: 680px) {
+
+  #index {
+      padding: 15rem 1rem 0 1rem;
+  }
+
+  #index .wc-block-grid__products {
+      margin-top: 5rem;
+      justify-content: center;
+  }      
+
+}
+
+/* Removing the style dots from the default woocommerce cart page. */
+.wp-block-separator.is-style-dots {
+  display: none;
+}
+
+/* Raising the empty cart block with negative margins on the top. */
+#index .wp-block-woocommerce-empty-cart-block {
+  margin-top: -80px;
+}
+
+/* Individual product card container styles. */
+#index .wc-block-grid__product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#index .wc-block-grid__product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-brown);
+    text-align: center;
+    margin: 1rem 0 0.25rem 0;
+}
+
+#index .wp-block-button__link {
+    background-color: var(--dark-brown);
+    color: var(--light-beige);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+    padding: 0.5rem 2.25rem;
+    border-radius: 5rem;
+    transition: var(--transition);
+    margin-top: 1rem;
+}
+
+#index .wp-block-button__link:hover {
+    background-color: var(--light-green);
+    color: var(--light-beige);
+}
+
+/* WooCommerce Checkout Styles */
+
+/* Cart Proceed to Checkout & Checkout Button styles. */
+body:not(.woocommerce-block-theme-has-button-styles) .wc-block-components-button:not(.is-link) {
+  margin: 2rem 0;
+  justify-content: right;
+}
+
+@media screen and (max-width: 450px) {
+
+  body:not(.woocommerce-block-theme-has-button-styles) .wc-block-components-button:not(.is-link) {
+    justify-content: center;
+  }
+  
+}
+
+/* Info notification border styles override. */
+.woocommerce-info {
+  border-top-color: var(--light-green);
+}
+
+/* Single Product View Styles */
+
+#main {
+    max-width: 1366px;
+    margin: 0 auto;
+    padding: 20rem 1rem 8rem 1rem;
+}
+
+/* Overriding the image and product summary widths. */
+.woocommerce div.product div.images, 
+.woocommerce-page div.product div.images {
+    width: 40%;
+}
+
+.woocommerce div.product div.summary, 
+.woocommerce-page div.product div.summary {
+    width: 55%;
+}
+
+/* Product title styles. */
+.woocommerce div.product .product_title {
+    color: var(--light-green);
+}
+
+/* Product description styles. */
+.woocommerce-product-details__short-description {
+    font-size: clamp(var(--mobile-body-size), 3vw, var(--desktop-body-size));
+    margin-bottom: 1rem;
+}
+
+.woocommerce-product-details__short-description > p {
+    margin-bottom: 1rem;
+}
+
+.woocommerce-product-details__short-description > p:last-of-type {
+    margin-bottom: 0;
+}
+
+.woocommerce-product-details__short-description > ul {
+    margin-top: 0.25rem;
+}
+
+/* Product price styles. */
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price, 
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product span.price {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Product stock styles. */
+.woocommerce div.product p.stock {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product .stock,
+.posted_in a {
+    color: var(--dark-brown);
+    transition: var(--transition);
+}
+
+.posted_in a:hover {
+    color: var(--light-green);
+}
+
+/* Woocommerce global button styles. */
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt {
+    background-color: var(--dark-brown);
+    color: var(--light-beige);
+    font-size: 1.05rem;
+    border-radius: 2rem;
+    padding: 0.75rem 2rem;
+    width: 200px;
+    margin-left: 1rem;
+    transition: var(--transition);
+}
+
+/* Woocommerce global button hover styles. */
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt:hover {
+    background-color: var(--light-green);
+}
+
+/* Single product quantity styles. */
+.woocommerce .quantity .qty {
+    margin-top: 0.25rem;
+    width: 4.6em;
+    padding: 0.4rem 0.1rem;
+}
+
+.product_meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.wc-block-components-button:not(.is-link) {
+  outline: none;
+  appearance: none;
+  border: none;
+  background: transparent;
+}
+
+/* Add to cart button styles when an option is not selected. */
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt.disabled {
+  background-color: var(--dark-brown);
+  color: var(--light-beige);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: var(--transition);
+}
+
+.woocommerce-page .woocommerce-info .button:hover {
+  background-color: var(--dark-brown);
+  color: var(--light-beige);
+}
+
+.return-to-shop a.button:hover,
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt.disabled:hover {
+  background-color: var(--light-green);
+  color: var(--light-beige);
+}
+
+/* Clear anchor styles next to my product variations. */
+.woocommerce div.product form.cart .reset_variations {
+  font-size: 1rem;
+  color: var(--dark-brown);
+  font-weight: 500;
+}
+
+
+/* WooCommerce Description Tabs Styles*/
+
+
+/* Product tab font color */
+.woocommerce div.product .product_title,
+.woocommerce div.product .woocommerce-tabs ul.tabs li a, 
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a,
+.woocommerce div.product .woocommerce-tabs ul.tabs li:hover a,
+.woocommerce div.product .woocommerce-tabs .panel > h2, .related > h2, #bestsellers > h2 {
+    color: var(--light-green);
+}
+
+/* Target the first tab, and provide some spacing to its right. */
+.woocommerce div.product .woocommerce-tabs ul.tabs li:nth-of-type(1) {
+    margin-right: 1rem;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li a, 
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+    transition: var(--transition);
+}
+
+/* tab before and after overrides, removing the borders and box shadows. */
+.woocommerce div.product .woocommerce-tabs ul.tabs li::after,
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active::after,
+.woocommerce div.product .woocommerce-tabs ul.tabs::before,
+.woocommerce div.product .woocommerce-tabs ul.tabs li::before,
+.woocommerce div.product .woocommerce-tabs ul.tabs li::after {
+    border: none;
+    box-shadow: none;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--dark-brown);
+    transition: var(--transition);
+    position: initial;
+}
+
+/* If a tab is active or hovered over, apply the following styles. */
+.woocommerce div.product .woocommerce-tabs ul.tabs li:hover,
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active {
+    background-color: var(--dark-brown);
+}
+
+.woocommerce div.product .woocommerce-tabs .panel > h2, .related > h2, #bestsellers > h2 {
+    margin-bottom: 1rem;
+}
+
+/* Single Product Media Query */
+@media screen and (max-width: 768px) {
+
+    #main {
+        padding: 8rem 0.75rem 0 0.75rem;
+    }
+
+    .woocommerce div.product div.images, 
+    .woocommerce-page div.product div.images,
+    .woocommerce div.product div.summary, 
+    .woocommerce-page div.product div.summary {
+        width: 100%;
+    }
+
+    .woocommerce div.product .woocommerce-tabs ul.tabs {
+      padding: 0;
+  }
+
+}
+
+/* Woocommerce notification message styles. If an item is added to the cart, the notification message will display, these styles will apply to the button inside the message container to prompt users to view their cart. */
+.woocommerce-message > a.button {
+  background-color: var(--dark-brown);
+  color: var(--light-beige);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: var(--transition);
+}
+
+.woocommerce-message > a.button:hover {
+  background-color: var(--light-green);
+  color: var(--light-beige);
+} 
+
+/* Account Page Styles */
+
+/* Overwrite the error anchor font color to match my theme. */
+.woocommerce-error a {
+  color: var(--light-green);
+}
+
+/* Account address title styles. */
+.woocommerce-Address-title {
+  margin-top: 2rem;
+  position: initial;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Account anchor styles. */
+.woocommerce-MyAccount-content a,
+.woocommerce-Address-title > a {
+  color: var(--light-green);
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.woocommerce-MyAccount-content a:hover,
+.woocommerce-Address-title > a:hover {
+  color: var(--dark-brown);
+}
+
+/* Account navigation links styles. */
+.woocommerce-MyAccount-navigation > ul,
+.woocommerce-MyAccount-content {
+  margin-top: 1rem;
+}
+
+/* Account navigation link spacing. */
+.woocommerce-MyAccount-navigation > ul li {
+  padding: 0.5rem 0;
+}
+
+.woocommerce-MyAccount-navigation > ul li a {
+  color: var(--dark-brown);
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.woocommerce-MyAccount-navigation > ul li a:hover {
+  color: var(--light-green);
+}
+
+.woocommerce-MyAccount-content {
+  padding: 0 0 10rem 0;
+}
+
+.woocommerce form .show-password-input, .woocommerce-page form .show-password-input {
+  top: 0.2em
+}
+
+/* Account button stylees, passing the name attribute to only target these buttons. */
+.woocommerce-MyAccount-content button[name="save_account_details"],
+.woocommerce-checkout-review-order button[name="woocommerce_checkout_place_order"] {
+  margin-top: 1.5rem;
+  background-color: var(--light-green);
+  color: var(--light-beige);
+  padding: 1rem 2rem;
+}
+
+.woocommerce-MyAccount-content button[name="save_account_details"]:hover {
+  background-color: var(--dark-brown);
+}
+
+
+/* Account summary button styles. */
+.woocommerce-page .woocommerce-info .button,
+.return-to-shop a.button  {
+  float: none;
+  background-color: var(--light-green);
+  color: var(--light-beige);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: var(--transition);
+  
+}
+
+.return-to-shop a.button {
+  background-color: var(--dark-brown);
+  margin-top: 1rem;
+}
+
+.woocommerce-variation-add-to-cart-disabled > button {
+  background-color: var(--dark-brown);
+  color: var(--light-beige);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: var(--transition);
+}
+
+/* Account Form Styles. */
+
+.woocommerce-EditAccountForm input {
+  background-color: var(--dark-brown);
+  border: none;
+  outline: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  color: var(--light-beige);
+}
+
+/* Required field star symbol * color. */
+.woocommerce form .form-row .required {
+  color: var(--light-green);
+}
+
+/* Save account button styles. */
+.woocommerce-MyAccount-content button[name="save_account_details"] {
+  background-color: var(--light-green);
+  color: var(--light-beige);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: var(--transition);
+}
+
+.woocommerce-MyAccount-content button[name="save_account_details"]:hover {
+  background-color: var(--dark-brown);
+  color: var(--light-beige);
+}
